@@ -1,5 +1,5 @@
 # Xiaomi BLU Auth
-Xiaomi CommunityのBootloader Unlock申請を自動化します。
+HyperOSの入ったXiaomiスマホをBootloader Unlockするために必要なXiaomi CommunityのBootloader Unlock申請を自動化します。
 
 ## 使い方
 最低限Node.jsを実行できる環境が必要です。
