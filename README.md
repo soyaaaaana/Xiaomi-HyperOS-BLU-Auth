@@ -14,7 +14,15 @@ HyperOSの入ったXiaomiスマホをBootloader Unlockするために必要なXi
 4. `node bl-auth.js`を実行して0時（中国時間。日本時間で1時）までターミナルになにも操作せず待機します。
 5. これでたぶん成功します。（まだ自分は試してないです）
 
-`.env`ファイルで使用するcookieは、プロキシを使用してHTTPS通信を監視することで取得できます。その他の方法については知りません。
+## `.env` ファイルについて
+`.env` ファイルは、`cookie='(クッキーの情報)'` のような形式にする必要があります。以下に `.env` ファイルの例を示します。
+<br>
+```
+cookie='new_bbs_serviceToken=xxxxxxxxxx;versionCode=500421;versionName=5.4.21;deviceID=ABCD1234'
+```
+`new_bbs_serviceToken` の値は、[mi.com](https://mi.com) にログインしてCookieにある `serviceToken` の値にします。
+<br>
+`versionCode`、`versionName`、`deviceID` の情報はなくても動作することを確認していますが、あったほうが安心かもしれません。
 
 ## ライセンス
 [MIT License](https://mit-license.org/)です。`LICENSE`ファイルに詳細が記載されています。
