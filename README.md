@@ -1,18 +1,18 @@
-# Xiaomi HyperOS BLU Auth
-HyperOSの入ったXiaomiスマホをBootloader Unlockするために必要なXiaomi CommunityのBootloader Unlock申請を自動化します。
+<div align="center">
+  <h1>Xiaomi HyperOS BLU Auth</h1>
+  HyperOSがインストールされているXiaomiスマホをBootloader Unlockするために必要なXiaomi CommunityのBootloader Unlock申請を自動化します。
+</div>
+
+## 必要なもの
+- 作成から30日経過した有効なXiaomiアカウント
+- Node.jsとNPM（Node.jsはv23.11.0でのみ検証）
+- インターネット接続
 
 ## 使い方
-最低限Node.jsを実行できる環境が必要です。
-<br>
-また、正常に動作させるにはインターネットに接続する必要があります。
-<br>
-モバイルデータ通信などの従量制課金接続を使用する場合は、通信料金が発生する可能性がありますが、このツールは1日に5KBほどしか通信しないため影響はかなり小さいです（手動で通信した場合を除く）。
-
 1. まず、`sample.env` ファイルを参考に、`.env` ファイルを作成します。
 2. 次に、`.env` ファイルがあるディレクトリと同じディレクトリに `bl-auth.js` を配置します。
-3. `npm i dotenv node-cron` を実行して実行に必要なモジュールをインストールします。
-4. `node bl-auth.js` を実行して0時（中国時間で0時、日本時間で1時）までターミナルになにも操作せず待機します。
-5. これで運が良ければ成功してブートローダーアンロック権限がもらえます。
+3. `npm start` を実行して0時（中国時間で0時、日本時間で1時）までターミナルになにも操作せず待機します。
+4. これで運が良ければ成功してブートローダーアンロック権限がもらえます。
 
 ## `.env` ファイルについて
 `.env` ファイルは、`cookie='(クッキーの情報)'` のような形式にする必要があります。以下に `.env` ファイルの例を示します。
