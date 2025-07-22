@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "npm i && node bl-auth.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "node-cron": "^4.2.1"
+  }
+}
