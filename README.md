@@ -20,7 +20,7 @@
 ```
 cookie='new_bbs_serviceToken=xxxxxxxxxx;versionCode=500421;versionName=5.4.21;deviceID=ABCD1234'
 ```
-`new_bbs_serviceToken` の値は、[mi.com](https://mi.com) にログインしてCookieにある `serviceToken` の値にします。
+`new_bbs_serviceToken` の値は、[mi.com](https://mi.com) にサインインするとCookieに設定される `serviceToken` の値にします。
 <br>
 `versionCode`、`versionName`、`deviceID` の情報はなくても動作することを確認していますが、あったほうが安心かもしれません。
 
