@@ -62,21 +62,33 @@ async function send_bl_auth() {
   const response_text = await response.text();
   try {
     const response_json = JSON.parse(response_text);
-    if (response_json?.code === 0) {
-      if (response_json?.data?.apply_result === 1) {
-        const date = new Date(response_json?.data?.deadline_format);
-        const deadline_text = date ? `有効期限は${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getDate().toString().padStart(2, "0")}(中国時間)です。` : "";
-        console.log("申請リクエストに成功しました！ブートローダーのアンロック権限が付与されました。" + deadline_text);
-        return true;
+    switch (response_json?.code) {
+      case 0: {
+        if (response_json?.data?.apply_result === 1) {
+          const date = new Date(response_json?.data?.deadline_format);
+          const deadline_text = date ? `有効期限は${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getDate().toString().padStart(2, "0")}(中国時間)です。` : "";
+          console.log("申請リクエストに成功しました！ブートローダーのアンロック権限が付与されました。" + deadline_text);
+          return true;
+        }
+        else if (response_json?.data?.apply_result === 3) {
+          const date = new Date(response_json?.data?.deadline_format);
+          const date_text = date ? `${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getDate().toString().padStart(2, "0")} ${date.getMinutes().toString().padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}(中国時間)に再度お試しください。` : "";
+          console.log("申請リクエストを送信しましたが、ブートローダーのアンロック権限は付与されませんでした。" + date_text);
+        }
+        break;
       }
-      else if (response_json?.data?.apply_result === 3) {
-        const date = new Date(response_json?.data?.deadline_format);
-        const date_text = date ? `${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getDate().toString().padStart(2, "0")} ${date.getMinutes().toString().padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}(中国時間)に再度お試しください。` : "";
-        console.log("申請リクエストを送信しましたが、ブートローダーのアンロック権限は付与されませんでした。" + date_text);
+      case 100003: {
+        console.error("既にブートローダーアンロック権限が付与されています！");
+        break;
       }
-    }
-    else {
-      console.error("申請リクエストにエラーが発生しました。エラーコード: " + response_json?.code);
+      case 100004: {
+        console.error("申請リクエストにエラーが発生しました。ログインに失敗しました。");
+        break;
+      }
+      default: {
+        console.error(`申請リクエストにエラーが発生しました。\nエラーコード: ${response_json?.code}\nレスポンス ボディ: ${response_text}`);
+        break;
+      }
     }
   }
   catch {
